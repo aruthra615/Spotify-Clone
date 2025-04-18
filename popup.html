@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spotify Popup</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(3px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .popup-box {
+      background: linear-gradient(to bottom, #2a4648, #0a0a0a);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 700px;
+      max-width: 90%;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      color: white;
+      position: relative;
+    }
+
+    .popup-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .popup-img {
+      width: 220px;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .popup-text h2 {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .btn-green {
+      background-color: #1ed760;
+      border: none;
+      border-radius: 30px;
+      padding: 0.75rem 2rem;
+      color: black;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid white;
+      border-radius: 30px;
+      padding: 0.75rem 2rem;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      cursor: pointer;
+    }
+
+    .login-link {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .login-link a {
+      color: white;
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closePage()">×</button>
+      <div class="popup-content">
+        <img src="popup-image.png" alt="Play Icon" class="popup-img" />
+        <div class="popup-text">
+          <h2>Start listening with a<br><strong>free Spotify account</strong></h2>
+          <button class="btn-green">Sign up free</button><br>
+          <button class="btn-outline">Download app</button>
+          <p class="login-link">Already have an account? <a href="#">Log in</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function closePage() {
+      window.close(); // Note: Only works if page opened via JavaScript (e.g., window.open)
+    }
+  </script>
+
+</body>
+</html>
