@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess the Song | Spotify Game</title>
+  <link rel="icon" href="assets/images/logo.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #1DB954, #191414);
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    .game-container {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 40px 30px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .game-container h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .score {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    audio {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .option-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .option-buttons button {
+      padding: 12px;
+      border-radius: 30px;
+      border: none;
+      background-color: #282828;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .option-buttons button:hover {
+      background-color: #1db954;
+    }
+
+    .game-result {
+      font-size: 1.1rem;
+      margin: 20px 0;
+      min-height: 1.4rem;
+    }
+
+    .next-btn {
+      padding: 10px 20px;
+      background-color: #1db954;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .next-btn:hover {
+      background-color: #1ed760;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="game-container">
+    <h1>🎵 Guess the Song</h1>
+    <p class="score">Score: <span id="score">0</span></p>
+
+    <audio id="song" controls></audio>
+
+    <div id="options" class="option-buttons"></div>
+
+    <p id="result" class="game-result"></p>
+
+    <button id="nextBtn" class="next-btn">Next Song ▶️</button>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        src: "assets/audio/song1.mp3",
+        answer: "Blinding Lights",
+        options: ["Save Your Tears", "Blinding Lights", "Starboy", "In Your Eyes"]
+      },
+      {
+        src: "assets/audio/song2.mp3",
+        answer: "Shape of You",
+        options: ["Photograph", "Perfect", "Shape of You", "Thinking Out Loud"]
+      },
+      {
+        src: "assets/audio/song3.mp3",
+        answer: "Levitating",
+        options: ["Don't Start Now", "Levitating", "Break My Heart", "New Rules"]
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const song = document.getElementById('song');
+    const optionsDiv = document.getElementById('options');
+    const result = document.getElementById('result');
+    const scoreSpan = document.getElementById('score');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function loadQuestion() {
+      result.textContent = '';
+      const data = quizData[currentQuestion];
+      song.src = data.src;
+      song.load();
+
+      optionsDiv.innerHTML = '';
+      data.options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.textContent = option;
+        btn.addEventListener('click', () => checkAnswer(option));
+        optionsDiv.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(selected) {
+      const correct = quizData[currentQuestion].answer;
+      if (selected === correct) {
+        score++;
+        result.textContent = "✅ Correct!";
+      } else {
+        result.textContent = `❌ Wrong! Correct: ${correct}`;
+      }
+      scoreSpan.textContent = score;
+      Array.from(optionsDiv.children).forEach(btn => btn.disabled = true);
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentQuestion++;
+      if (currentQuestion < quizData.length) {
+        loadQuestion();
+      } else {
+        result.textContent = `🎉 Game Over! Final Score: ${score}/${quizData.length}`;
+        nextBtn.disabled = true;
+        optionsDiv.innerHTML = '';
+        song.src = '';
+      }
+    });
+
+    // Initial load
+    loadQuestion();
+  </script>
+</body>
+</html>
