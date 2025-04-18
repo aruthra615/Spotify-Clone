@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spotify Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="assets/images/logo.svg" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="dashboard-body">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <img src="assets/images/logo.svg" class="sidebar-logo" alt="Spotify Logo" />
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Search</a>
+      <a href="#">Your Library</a>
+      <hr />
+      <a href="#">Create Playlist</a>
+      <a href="#">Liked Songs</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="topbar">
+      <h2>Good Evening</h2>
+      <div class="topbar-user">
+        <img src="assets/images/user-avatar.png" alt="User Avatar">
+      </div>
+    </header>
+
+    <section class="playlists">
+      <h3>Recently Played</h3>
+      <div class="card-grid">
+        <!-- Repeat card for each album -->
+        <div class="card">
+          <img src="assets/images/album1.jpg" alt="Album Art" />
+          <p>Lo-Fi Beats</p>
+        </div>
+        <div class="card">
+          <img src="assets/images/album2.jpg" alt="Album Art" />
+          <p>Peaceful Piano</p>
+        </div>
+        <div class="card">
+          <img src="assets/images/album3.jpg" alt="Album Art" />
+          <p>Pop Hits</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Music Player -->
+  <footer class="player-bar">
+    <div class="player-song-info">
+      <img src="assets/images/album1.jpg" alt="Album" />
+      <div>
+        <p class="song-title">Rainy Days</p>
+        <p class="song-artist">Lo-Fi Sleep</p>
+      </div>
+    </div>
+    <div class="player-controls">
+      <button>⏮️</button>
+      <button>▶️</button>
+      <button>⏭️</button>
+    </div>
+    <div class="player-volume">
+      🔊 <input type="range" min="0" max="100" value="50">
+    </div>
+  </footer>
+
+</body>
+</html>
